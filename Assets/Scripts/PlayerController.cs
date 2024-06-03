@@ -10,14 +10,11 @@ public class PlayerController : MonoBehaviour {
 
     private Rigidbody rb;
     private bool isGrounded;
-    private Animator animator;
 
     void Start()
     {
         // Ensure we have a reference to the Rigidbody on the Body
         rb = body.GetComponent<Rigidbody>();
-        // Reference to the Animator component
-        animator = body.GetComponent<Animator>();
     }
 
     void Update()
@@ -78,7 +75,11 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButtonDown("Fire1"))
         {
             Debug.Log("Attack button pressed");
-            animator.SetTrigger("Attack");
+            Animator animator = body.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.SetTrigger("Attack");
+            }
         }
     }
     
